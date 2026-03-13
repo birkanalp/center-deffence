@@ -1,0 +1,16 @@
+---
+description: Godot 2D project constraints — strictly 2D, native nodes, modular scenes
+alwaysApply: true
+---
+
+# Godot 2D Rules
+
+See `docs/ai-rules.md` for full AI contributor guidelines.
+
+- **Strictly 2D.** Never introduce 3D nodes, 3D physics, or 3D workflows.
+- **Godot-native 2D.** Prefer built-in 2D solutions.
+- **2D nodes.** Use Sprite2D, AnimatedSprite2D, Area2D, CharacterBody2D, CollisionShape2D, TileMap, AnimationPlayer, ParallaxBackground, ParallaxLayer when appropriate.
+- **Separate visuals from logic.** Keep visuals and gameplay logic separate where possible.
+- **Modular scenes.** Keep scenes modular and reusable.
+- **Scripts.** Avoid scripts on passive visual assets; attach only when interaction or behavior is required.
+- **Validate.** Run the project and verify scene changes before concluding a task.

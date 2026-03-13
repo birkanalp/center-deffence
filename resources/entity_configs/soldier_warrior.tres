@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="SoldierData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/soldier_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/warrior/front.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/warrior/back.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/warrior/left.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/warrior/right.png" id="5"]
+
+[resource]
+script = ExtResource("1")
+id = "warrior"
+display_name = "Viking Leader"
+description = "Balanced frontliner with solid health and reliable damage."
+cost = 15
+unlock_price = 0
+move_speed = 300.0
+max_range = 600.0
+max_health = 30
+attack_damage = 10
+attack_cooldown = 0.8
+lifetime = 30.0
+color = Color(0.25, 0.75, 0.35, 1)
+icon = ExtResource("2")
+front_texture = ExtResource("2")
+back_texture = ExtResource("3")
+left_texture = ExtResource("4")
+right_texture = ExtResource("5")
+animation_root = "res://assets/characters/viking_leader"
+sprite_scale = Vector2(0.095, 0.095)
+is_premium = false
+sort_order = 0

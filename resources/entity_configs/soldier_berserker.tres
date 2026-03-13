@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SoldierData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/soldier_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "berserker"
+display_name = "Berserker"
+description = "Glass cannon. Massive damage but dies fast."
+cost = 20
+unlock_price = 300
+move_speed = 380.0
+max_range = 550.0
+max_health = 15
+attack_damage = 25
+attack_cooldown = 0.6
+lifetime = 18.0
+color = Color(0.9, 0.2, 0.2, 1)
+is_premium = false
+sort_order = 4

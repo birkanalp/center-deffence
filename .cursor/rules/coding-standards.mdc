@@ -1,0 +1,15 @@
+---
+description: Coding standards — focused scripts, clear names, minimal safe implementation
+alwaysApply: true
+---
+
+# Coding Standards
+
+- **Single-purpose scripts.** Keep scripts focused and single-purpose.
+- **No dead code.** Avoid dead code and unnecessary abstraction.
+- **Match existing style.** Preserve the coding style used in the repository.
+- **Clear names.** Use clear and descriptive names.
+- **Separate logic from visuals.** Avoid tightly coupling gameplay logic to visuals.
+- **Reuse.** Reuse existing helpers, base classes, and patterns when possible.
+- **Preserve working systems.** Do not rewrite working systems unless required by the task.
+- **Minimal implementation.** Prefer the smallest safe implementation that solves the problem.

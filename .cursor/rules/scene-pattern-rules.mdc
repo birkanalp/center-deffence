@@ -1,0 +1,15 @@
+---
+description: Scene architecture and node patterns — reuse, readable trees, preserve contracts
+alwaysApply: true
+---
+
+# Scene Pattern Rules
+
+- **Inspect first.** Inspect similar existing scenes before creating a new one.
+- **Reuse.** Prefer existing base scenes, reusable patterns, and inheritance structures when available.
+- **Readable trees.** Keep scene trees simple and readable.
+- **No duplicate systems.** Avoid duplicate gameplay systems across scenes.
+- **Preserve contracts.** Preserve existing node paths, signals, groups, and scene contracts where possible.
+- **Collision when needed.** Add collision only when gameplay requires it.
+- **AnimatedSprite2D.** Use AnimatedSprite2D for frame-based animation when animation frames exist.
+- **TileMap for tiles.** Use TileMap / TileSet for tile-based content instead of loose manual placement, unless the project already uses that pattern.

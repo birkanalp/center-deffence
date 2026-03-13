@@ -1,0 +1,47 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly.
+; Since it's best to let the editor manage this file, only a few
+; temporary settings are set here.
+
+[application]
+
+config/name="Center Defense"
+config/description="Defend your tower from all directions! Swipe to send soldiers and survive 3 minutes."
+config/version="1.0.0"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
+config/features=PackedStringArray("4.4", "Mobile")
+config/icon="res://assets/sprites/tower.png"
+
+[autoload]
+
+GameManager="*res://scripts/autoloads/game_manager.gd"
+SaveManager="*res://scripts/autoloads/save_manager.gd"
+SoldierRegistry="*res://scripts/autoloads/soldier_registry.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
+[layer_names]
+
+2d_physics/layer_1="tower"
+2d_physics/layer_2="soldiers"
+2d_physics/layer_3="enemies"
+
+[gui]
+
+theme/custom="res://resources/themes/game_theme.tres"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

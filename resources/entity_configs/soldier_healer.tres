@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SoldierData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/soldier_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "healer"
+display_name = "Healer"
+description = "Weak fighter but long lifetime. Stays on the field longer."
+cost = 12
+unlock_price = 150
+move_speed = 250.0
+max_range = 500.0
+max_health = 40
+attack_damage = 5
+attack_cooldown = 1.0
+lifetime = 50.0
+color = Color(0.9, 0.4, 0.7, 1)
+is_premium = false
+sort_order = 3

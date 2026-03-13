@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="SoldierData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/soldier_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/tank/front.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/tank/back.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/tank/left.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soldiers/tank/right.png" id="5"]
+
+[resource]
+script = ExtResource("1")
+id = "tank"
+display_name = "Giant Goblin"
+description = "Slow and durable bruiser that soaks damage for the tower."
+cost = 25
+unlock_price = 0
+move_speed = 160.0
+max_range = 400.0
+max_health = 70
+attack_damage = 18
+attack_cooldown = 1.2
+lifetime = 25.0
+color = Color(0.3, 0.5, 0.9, 1)
+icon = ExtResource("2")
+front_texture = ExtResource("2")
+back_texture = ExtResource("3")
+left_texture = ExtResource("4")
+right_texture = ExtResource("5")
+animation_root = "res://assets/characters/giant_goblin"
+sprite_scale = Vector2(0.1, 0.1)
+is_premium = false
+sort_order = 1

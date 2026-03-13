@@ -1,0 +1,16 @@
+---
+description: Repository structure and organization — folder layout, naming, incremental changes
+alwaysApply: true
+---
+
+# Project Structure Rules
+
+See `docs/architecture.md` for current folder structure.
+
+- **Inspect first.** Inspect the existing folder structure before creating new files or folders.
+- **Naming.** Reuse current naming conventions (e.g. snake_case, entity_name/).
+- **Placement.** Place assets, scenes, scripts, and UI in their correct existing directories.
+- **Avoid moves/renames.** Do not move or rename files unless there is a strong reason.
+- **Consistency.** Prefer consistency with the repository over introducing a new structure.
+- **Inspect before creating.** Inspect similar existing scenes and scripts before creating new structures.
+- **Incremental.** Prefer incremental changes over broad reorganization.
