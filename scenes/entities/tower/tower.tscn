@@ -18,7 +18,7 @@ script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2")
-scale = Vector2(1.0, 1.0)
+scale = Vector2(0.4, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tower")
@@ -31,12 +31,12 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_hit")
 
 [node name="HealthBarBG" type="Sprite2D" parent="."]
-position = Vector2(0, -80)
+position = Vector2(0, -145)
 texture = ExtResource("3")
 scale = Vector2(2.0, 2.0)
 
 [node name="HealthBarFill" type="Sprite2D" parent="."]
-position = Vector2(0, -80)
+position = Vector2(0, -145)
 texture = ExtResource("4")
 scale = Vector2(2.0, 2.0)
 modulate = Color(0, 1, 0, 1)

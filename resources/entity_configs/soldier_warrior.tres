@@ -26,6 +26,6 @@ back_texture = ExtResource("3")
 left_texture = ExtResource("4")
 right_texture = ExtResource("5")
 animation_root = "res://assets/characters/viking_leader"
-sprite_scale = Vector2(0.095, 0.095)
+sprite_scale = Vector2(0.125, 0.125)
 is_premium = false
 sort_order = 0

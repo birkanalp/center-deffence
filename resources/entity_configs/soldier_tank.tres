@@ -26,6 +26,6 @@ back_texture = ExtResource("3")
 left_texture = ExtResource("4")
 right_texture = ExtResource("5")
 animation_root = "res://assets/characters/giant_goblin"
-sprite_scale = Vector2(0.1, 0.1)
+sprite_scale = Vector2(0.13, 0.13)
 is_premium = false
 sort_order = 1

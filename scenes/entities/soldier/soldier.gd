@@ -13,8 +13,10 @@ const FACING_FRONT := "front"
 const FACING_BACK := "back"
 const FACING_LEFT := "left"
 const FACING_RIGHT := "right"
+const MAX_GROUND_RANGE := 360.0
 
 static var _sprite_frames_cache: Dictionary = {}
+static var _texture_cache: Dictionary = {}
 
 # Stats configured by configure_from_data() or configure_type()
 var move_speed: float = 300.0
@@ -45,7 +47,7 @@ var _current_animation: String = ""
 func configure_from_data(data: SoldierData) -> void:
 	soldier_data = data
 	move_speed = data.move_speed
-	max_range = data.max_range
+	max_range = minf(data.max_range, MAX_GROUND_RANGE)
 	max_health = data.max_health
 	attack_damage = data.attack_damage
 	attack_cooldown = data.attack_cooldown
@@ -347,8 +349,17 @@ func _add_animation_frames(frames: SpriteFrames, animation_name: String, root_pa
 	frames.set_animation_loop(animation_name, loop)
 
 	for frame_file in file_names:
-		var image := Image.new()
-		if image.load("%s/%s" % [folder_path, frame_file]) != OK:
+		var frame_path := "%s/%s" % [folder_path, frame_file]
+		var texture := _get_cached_texture(frame_path)
+		if texture == null:
 			continue
-		var texture := ImageTexture.create_from_image(image)
 		frames.add_frame(animation_name, texture)
+
+func _get_cached_texture(texture_path: String) -> Texture2D:
+	if _texture_cache.has(texture_path):
+		return _texture_cache[texture_path]
+
+	var texture := load(texture_path) as Texture2D
+	if texture != null:
+		_texture_cache[texture_path] = texture
+	return texture

@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/entities/tower/tower.tscn" id="2"]
 [ext_resource type="Script" path="res://scripts/systems/touch_input.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/systems/enemy_spawner.gd" id="4"]
 [ext_resource type="Texture2D" path="res://assets/sprites/direction_arrow.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/graund/graund1.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/graund/graund2.png" id="7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_bg"]
 bg_color = Color(0.05, 0.07, 0.13, 0.75)
@@ -21,11 +23,13 @@ corner_radius_bottom_left = 12
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 mouse_filter = 2
 offset_right = 1080.0
 offset_bottom = 1920.0
-color = Color(0.05, 0.07, 0.13, 1)
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="GameWorld" type="Node2D" parent="."]
 
@@ -37,6 +41,14 @@ position = Vector2(540, 960)
 [node name="Enemies" type="Node2D" parent="GameWorld"]
 
 [node name="Effects" type="Node2D" parent="GameWorld"]
+
+[node name="ForegroundOverlay" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_right = 1080.0
+offset_bottom = 1920.0
+texture = ExtResource("7")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="TouchInputHandler" type="Node2D" parent="."]
 script = ExtResource("3")
