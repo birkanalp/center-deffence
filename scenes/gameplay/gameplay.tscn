@@ -125,6 +125,14 @@ theme_override_colors/font_color = Color(0.58, 0.68, 0.80, 1)
 horizontal_alignment = 2
 text = "Wave 1"
 
+[node name="PauseButton" type="Button" parent="HUD"]
+offset_left = 890.0
+offset_top = 140.0
+offset_right = 1040.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 28
+text = "PAUSE"
+
 [node name="KillsLabel" type="Label" parent="HUD"]
 mouse_filter = 2
 offset_left = 40.0
@@ -143,3 +151,67 @@ offset_bottom = 1890.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 text = "Tower: 100/100"
+
+[node name="PauseOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Dimmer" type="ColorRect" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.06, 0.82)
+
+[node name="Panel" type="PanelContainer" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -170.0
+offset_right = 220.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="PauseOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1.0, 0.84, 0.1, 1)
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="PauseOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.58, 0.68, 0.80, 1)
+text = "Take a break or return to the menu."
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(260, 70)
+theme_override_font_sizes/font_size = 30
+text = "RESUME"
+
+[node name="MenuButton" type="Button" parent="PauseOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(260, 70)
+theme_override_font_sizes/font_size = 30
+text = "MAIN MENU"

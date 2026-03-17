@@ -20,6 +20,10 @@ var soldier_scene: PackedScene = preload("res://scenes/entities/soldier/soldier.
 @onready var touch_handler: Node2D = $TouchInputHandler
 @onready var enemy_spawner: Node = $EnemySpawner
 @onready var hud: CanvasLayer = $HUD
+@onready var pause_button: Button = $HUD/PauseButton
+@onready var pause_overlay: Control = $PauseOverlay
+@onready var resume_button: Button = $PauseOverlay/Panel/VBoxContainer/ResumeButton
+@onready var pause_menu_button: Button = $PauseOverlay/Panel/VBoxContainer/MenuButton
 
 func _ready() -> void:
 	game_active = true
@@ -36,6 +40,11 @@ func _ready() -> void:
 	tower.tower_destroyed.connect(_on_tower_destroyed)
 	tower.health_changed.connect(_on_tower_health_changed)
 	enemy_spawner.wave_started.connect(_on_wave_started)
+	pause_button.pressed.connect(_on_pause_pressed)
+	resume_button.pressed.connect(_on_resume_pressed)
+	pause_menu_button.pressed.connect(_on_pause_menu_pressed)
+	pause_overlay.visible = false
+	pause_overlay.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	enemy_spawner.start_spawning(enemies_container)
 
 func _process(delta: float) -> void:
@@ -124,3 +133,24 @@ func _on_tower_health_changed(current_hp: int, max_hp: int) -> void:
 
 func _on_wave_started(wave_number: int) -> void:
 	hud.get_node("WaveLabel").text = "Wave %d" % wave_number
+
+func _on_pause_pressed() -> void:
+	if not game_active or get_tree().paused:
+		return
+	AudioManager.play_sfx("ui")
+	get_tree().paused = true
+	pause_overlay.visible = true
+
+func _on_resume_pressed() -> void:
+	AudioManager.play_sfx("ui")
+	pause_overlay.visible = false
+	get_tree().paused = false
+
+func _on_pause_menu_pressed() -> void:
+	AudioManager.play_sfx("ui")
+	get_tree().paused = false
+	GameManager.reset_game_state()
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+
+func _exit_tree() -> void:
+	get_tree().paused = false
