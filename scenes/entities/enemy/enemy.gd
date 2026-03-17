@@ -88,6 +88,7 @@ func _on_combat_timer_timeout() -> void:
 func take_damage(amount: int) -> void:
 	current_health -= amount
 	_update_health_bar()
+	AudioManager.play_sfx("hit")
 
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.08).timeout
@@ -112,6 +113,7 @@ func _die() -> void:
 	combat_timer.stop()
 	GameManager.enemies_killed += 1
 	GameManager.coins += coin_reward
+	AudioManager.play_sfx("enemy_down")
 
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.3)

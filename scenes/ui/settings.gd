@@ -22,11 +22,12 @@ func _ready() -> void:
 	_update_labels()
 
 func _on_sfx_value_changed(value: float) -> void:
-	SaveManager.set_value(SECTION, KEY_SFX_VOLUME, value)
+	AudioManager.set_sfx_volume(value, true)
+	AudioManager.play_sfx("ui")
 	_update_labels()
 
 func _on_music_value_changed(value: float) -> void:
-	SaveManager.set_value(SECTION, KEY_MUSIC_VOLUME, value)
+	AudioManager.set_music_volume(value, true)
 	_update_labels()
 
 func _update_labels() -> void:

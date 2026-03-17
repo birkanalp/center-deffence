@@ -27,6 +27,7 @@ func _ready() -> void:
 	time_remaining = GAME_DURATION
 	time_elapsed = 0.0
 	GameManager.coins = GameManager.STARTING_COINS
+	AudioManager.play_gameplay_music()
 
 	var viewport_size: Vector2 = get_viewport_rect().size
 	tower.global_position = viewport_size / 2.0
@@ -89,6 +90,7 @@ func _on_direction_confirmed(direction: Vector2, soldier_type: int) -> void:
 	if GameManager.coins < data.cost:
 		return
 	GameManager.coins -= data.cost
+	AudioManager.play_sfx("spawn")
 	_spawn_soldier(direction, data)
 
 func _spawn_soldier(direction: Vector2, data: SoldierData = null) -> void:
@@ -105,6 +107,7 @@ func _on_tower_destroyed() -> void:
 	game_active = false
 	enemy_spawner.stop_spawning()
 	GameManager.last_result_victory = false
+	AudioManager.play_sfx("defeat")
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://scenes/game_over/game_over.tscn")
 
@@ -112,6 +115,7 @@ func _on_time_up() -> void:
 	game_active = false
 	enemy_spawner.stop_spawning()
 	GameManager.last_result_victory = true
+	AudioManager.play_sfx("victory")
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://scenes/game_over/game_over.tscn")
 

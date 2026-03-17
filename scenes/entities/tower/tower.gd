@@ -19,6 +19,7 @@ func _ready() -> void:
 
 func take_damage(amount: int) -> void:
 	current_health = max(0, current_health - amount)
+	AudioManager.play_sfx("tower_hit")
 	health_changed.emit(current_health, max_health)
 	_update_health_bar()
 	_flash_damage()

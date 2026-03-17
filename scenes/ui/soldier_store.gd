@@ -7,6 +7,7 @@ const SoldierData = preload("res://scripts/data/soldier_data.gd")
 var card_scene: PackedScene = preload("res://scenes/ui/soldier_card.tscn")
 
 func _ready() -> void:
+	AudioManager.play_menu_music()
 	$VBoxContainer/BackButton.pressed.connect(_on_back_pressed)
 	_update_coins_label()
 	_build_card_list()
@@ -60,10 +61,12 @@ func _on_buy_pressed(soldier_id: String) -> void:
 		SaveManager.set_value("unlocks", "soldier_ids", unlocked_ids)
 
 	SaveManager.save_data()
+	AudioManager.play_sfx("ui")
 
 	# Rebuild the card list to reflect changes
 	_update_coins_label()
 	_build_card_list()
 
 func _on_back_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

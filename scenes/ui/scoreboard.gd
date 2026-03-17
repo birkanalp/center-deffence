@@ -5,6 +5,7 @@ extends Control
 var current_tab: int = 0  # 0 = classic, 1 = survival
 
 func _ready() -> void:
+	AudioManager.play_menu_music()
 	$VBoxContainer/TabContainer/ClassicTab.pressed.connect(_on_classic_tab)
 	$VBoxContainer/TabContainer/SurvivalTab.pressed.connect(_on_survival_tab)
 	$VBoxContainer/BackButton.pressed.connect(_on_back_pressed)
@@ -12,11 +13,13 @@ func _ready() -> void:
 	_update_tab_highlight()
 
 func _on_classic_tab() -> void:
+	AudioManager.play_sfx("ui")
 	current_tab = 0
 	_show_scores("classic")
 	_update_tab_highlight()
 
 func _on_survival_tab() -> void:
+	AudioManager.play_sfx("ui")
 	current_tab = 1
 	_show_scores("survival")
 	_update_tab_highlight()
@@ -110,4 +113,5 @@ func _format_date(date_str: String) -> String:
 	return "%s %s" % [month_names[month_idx], parts[2]]
 
 func _on_back_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

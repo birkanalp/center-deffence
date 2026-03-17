@@ -6,6 +6,7 @@ var current_mode: int = 0
 
 func _ready() -> void:
 	current_mode = GameManager.game_mode
+	AudioManager.play_menu_music()
 	$VBoxContainer/PlayAgainButton.pressed.connect(_on_play_again)
 	$VBoxContainer/MenuButton.pressed.connect(_on_menu)
 
@@ -46,11 +47,13 @@ func _format_time(seconds: float) -> String:
 	return "%d:%02d" % [m, s]
 
 func _on_play_again() -> void:
+	AudioManager.play_sfx("ui")
 	var mode: int = current_mode
 	GameManager.reset_game_state()
 	GameManager.game_mode = mode
 	get_tree().change_scene_to_file("res://scenes/gameplay/gameplay.tscn")
 
 func _on_menu() -> void:
+	AudioManager.play_sfx("ui")
 	GameManager.reset_game_state()
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

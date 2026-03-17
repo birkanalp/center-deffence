@@ -4,6 +4,7 @@ extends Control
 
 func _ready() -> void:
 	GameManager.reset_game_state()
+	AudioManager.play_menu_music()
 	$VBoxContainer/ClassicButton.pressed.connect(_on_classic_pressed)
 	$VBoxContainer/SurvivalButton.pressed.connect(_on_survival_pressed)
 	$VBoxContainer/ScoresButton.pressed.connect(_on_scores_pressed)
@@ -16,21 +17,27 @@ func _ready() -> void:
 	$CoinsLabel.text = "Coins: %d" % persistent_coins
 
 func _on_classic_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	GameManager.game_mode = GameManager.MODE_CLASSIC
 	get_tree().change_scene_to_file("res://scenes/gameplay/gameplay.tscn")
 
 func _on_survival_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	GameManager.game_mode = GameManager.MODE_SURVIVAL
 	get_tree().change_scene_to_file("res://scenes/gameplay/gameplay.tscn")
 
 func _on_scores_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/ui/scoreboard.tscn")
 
 func _on_profile_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/ui/profile.tscn")
 
 func _on_store_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/ui/soldier_store.tscn")
 
 func _on_settings_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/ui/settings.tscn")

@@ -3,6 +3,7 @@ extends Control
 ## Player profile screen — shows editable name and lifetime stats.
 
 func _ready() -> void:
+	AudioManager.play_menu_music()
 	$VBoxContainer/BackButton.pressed.connect(_on_back_pressed)
 
 	# Load player name
@@ -34,4 +35,5 @@ func _on_name_changed(new_text: String) -> void:
 	SaveManager.set_value("profile", "player_name", new_text)
 
 func _on_back_pressed() -> void:
+	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
