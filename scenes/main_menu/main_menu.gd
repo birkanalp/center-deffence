@@ -9,6 +9,7 @@ func _ready() -> void:
 	$VBoxContainer/ScoresButton.pressed.connect(_on_scores_pressed)
 	$VBoxContainer/ProfileButton.pressed.connect(_on_profile_pressed)
 	$VBoxContainer/StoreButton.pressed.connect(_on_store_pressed)
+	$VBoxContainer/SettingsButton.pressed.connect(_on_settings_pressed)
 
 	# Show persistent coins
 	var persistent_coins: int = int(SaveManager.get_value("profile", "persistent_coins", 0))
@@ -30,3 +31,6 @@ func _on_profile_pressed() -> void:
 
 func _on_store_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/soldier_store.tscn")
+
+func _on_settings_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/settings.tscn")
