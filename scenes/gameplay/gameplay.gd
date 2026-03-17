@@ -26,6 +26,9 @@ var soldier_scene: PackedScene = preload("res://scenes/entities/soldier/soldier.
 @onready var pause_menu_button: Button = $PauseOverlay/Panel/VBoxContainer/MenuButton
 @onready var tutorial_overlay: Control = $TutorialOverlay
 @onready var tutorial_start_button: Button = $TutorialOverlay/Panel/VBoxContainer/StartButton
+@onready var status_label: Label = $HUD/StatusLabel
+
+var _status_message_token: int = 0
 
 func _ready() -> void:
 	game_active = true
@@ -50,6 +53,7 @@ func _ready() -> void:
 	tutorial_overlay.visible = false
 	tutorial_overlay.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	tutorial_start_button.pressed.connect(_on_tutorial_start_pressed)
+	status_label.visible = false
 	enemy_spawner.start_spawning(enemies_container)
 	_show_tutorial_if_needed()
 
@@ -100,13 +104,16 @@ func _on_direction_confirmed(direction: Vector2, soldier_type: int) -> void:
 		return
 	var unlocked: Array = SoldierRegistry.get_unlocked()
 	if soldier_type < 0 or soldier_type >= unlocked.size():
+		_show_status_message("No soldier available.", Color(1.0, 0.7, 0.3))
 		return
 	var data: SoldierData = unlocked[soldier_type]
 	if GameManager.coins < data.cost:
+		_show_status_message("Not enough coins for %s." % data.display_name, Color(1.0, 0.4, 0.4))
 		return
 	GameManager.coins -= data.cost
 	AudioManager.play_sfx("spawn")
 	_spawn_soldier(direction, data)
+	_show_status_message("%s deployed." % data.display_name, Color(0.35, 1.0, 0.55))
 
 func _spawn_soldier(direction: Vector2, data: SoldierData = null) -> void:
 	var soldier_instance = soldier_scene.instantiate()
@@ -175,3 +182,13 @@ func _on_tutorial_start_pressed() -> void:
 	SaveManager.set_value("profile", "tutorial_completed", true)
 	SaveManager.save_data()
 	get_tree().paused = false
+
+func _show_status_message(text: String, color: Color) -> void:
+	_status_message_token += 1
+	var current_token := _status_message_token
+	status_label.text = text
+	status_label.modulate = color
+	status_label.visible = true
+	await get_tree().create_timer(1.2).timeout
+	if current_token == _status_message_token and is_instance_valid(status_label):
+		status_label.visible = false

@@ -2,9 +2,14 @@ extends Control
 
 ## Player profile screen — shows editable name and lifetime stats.
 
+@onready var save_status_label: Label = $VBoxContainer/SaveStatusLabel
+
+var _save_status_token: int = 0
+
 func _ready() -> void:
 	AudioManager.play_menu_music()
 	$VBoxContainer/BackButton.pressed.connect(_on_back_pressed)
+	save_status_label.visible = false
 
 	# Load player name
 	var player_name: String = str(SaveManager.get_value("profile", "player_name", ""))
@@ -33,7 +38,18 @@ func _update_stats() -> void:
 
 func _on_name_changed(new_text: String) -> void:
 	SaveManager.set_value("profile", "player_name", new_text)
+	SaveManager.save_data()
+	_show_save_status()
 
 func _on_back_pressed() -> void:
 	AudioManager.play_sfx("ui")
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+
+func _show_save_status() -> void:
+	_save_status_token += 1
+	var current_token := _save_status_token
+	save_status_label.text = "Profile saved"
+	save_status_label.visible = true
+	await get_tree().create_timer(1.0).timeout
+	if current_token == _save_status_token and is_instance_valid(save_status_label):
+		save_status_label.visible = false

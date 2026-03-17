@@ -152,6 +152,17 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 text = "Tower: 100/100"
 
+[node name="StatusLabel" type="Label" parent="HUD"]
+visible = false
+offset_left = 150.0
+offset_top = 1710.0
+offset_right = 930.0
+offset_bottom = 1770.0
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+horizontal_alignment = 1
+text = "Status"
+
 [node name="PauseOverlay" type="Control" parent="."]
 visible = false
 layout_mode = 3
