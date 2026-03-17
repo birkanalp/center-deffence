@@ -113,6 +113,7 @@ func _on_direction_confirmed(direction: Vector2, soldier_type: int) -> void:
 	GameManager.coins -= data.cost
 	AudioManager.play_sfx("spawn")
 	_spawn_soldier(direction, data)
+	EffectsManager.spawn_pulse(tower.global_position, data.color, 70.0, 0.28)
 	_show_status_message("%s deployed." % data.display_name, Color(0.35, 1.0, 0.55))
 
 func _spawn_soldier(direction: Vector2, data: SoldierData = null) -> void:

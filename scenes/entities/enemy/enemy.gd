@@ -114,6 +114,7 @@ func _die() -> void:
 	GameManager.enemies_killed += 1
 	GameManager.coins += coin_reward
 	AudioManager.play_sfx("enemy_down")
+	EffectsManager.spawn_pulse(global_position, Color(1.0, 0.25, 0.25), 75.0, 0.25)
 
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.3)
