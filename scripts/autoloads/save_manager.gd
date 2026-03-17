@@ -71,6 +71,7 @@ func _get_default_data() -> Dictionary:
 			"total_enemies_killed": 0,
 			"total_time_played": 0.0,
 			"ads_removed": false,
+			"tutorial_completed": false,
 		},
 		"unlocks": {
 			"soldier_ids": ["warrior", "tank", "ranger"],
@@ -87,9 +88,20 @@ func _get_default_data() -> Dictionary:
 
 func _migrate_if_needed() -> void:
 	var saved_version: int = _data.get("version", 0)
+	var changed: bool = false
 	if saved_version < SAVE_VERSION:
 		# Future migrations go here
 		_data["version"] = SAVE_VERSION
+		changed = true
+
+	if not _data.has("profile") or not (_data["profile"] is Dictionary):
+		_data["profile"] = {}
+		changed = true
+	if not _data["profile"].has("tutorial_completed"):
+		_data["profile"]["tutorial_completed"] = false
+		changed = true
+
+	if changed:
 		save_data()
 
 func _notification(what: int) -> void:

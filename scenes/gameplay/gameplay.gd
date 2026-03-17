@@ -24,6 +24,8 @@ var soldier_scene: PackedScene = preload("res://scenes/entities/soldier/soldier.
 @onready var pause_overlay: Control = $PauseOverlay
 @onready var resume_button: Button = $PauseOverlay/Panel/VBoxContainer/ResumeButton
 @onready var pause_menu_button: Button = $PauseOverlay/Panel/VBoxContainer/MenuButton
+@onready var tutorial_overlay: Control = $TutorialOverlay
+@onready var tutorial_start_button: Button = $TutorialOverlay/Panel/VBoxContainer/StartButton
 
 func _ready() -> void:
 	game_active = true
@@ -45,7 +47,11 @@ func _ready() -> void:
 	pause_menu_button.pressed.connect(_on_pause_menu_pressed)
 	pause_overlay.visible = false
 	pause_overlay.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	tutorial_overlay.visible = false
+	tutorial_overlay.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	tutorial_start_button.pressed.connect(_on_tutorial_start_pressed)
 	enemy_spawner.start_spawning(enemies_container)
+	_show_tutorial_if_needed()
 
 func _process(delta: float) -> void:
 	if not game_active:
@@ -135,7 +141,7 @@ func _on_wave_started(wave_number: int) -> void:
 	hud.get_node("WaveLabel").text = "Wave %d" % wave_number
 
 func _on_pause_pressed() -> void:
-	if not game_active or get_tree().paused:
+	if not game_active or get_tree().paused or tutorial_overlay.visible:
 		return
 	AudioManager.play_sfx("ui")
 	get_tree().paused = true
@@ -153,4 +159,19 @@ func _on_pause_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 func _exit_tree() -> void:
+	get_tree().paused = false
+
+func _show_tutorial_if_needed() -> void:
+	var tutorial_completed: bool = bool(SaveManager.get_value("profile", "tutorial_completed", false))
+	if tutorial_completed:
+		return
+
+	get_tree().paused = true
+	tutorial_overlay.visible = true
+
+func _on_tutorial_start_pressed() -> void:
+	AudioManager.play_sfx("ui")
+	tutorial_overlay.visible = false
+	SaveManager.set_value("profile", "tutorial_completed", true)
+	SaveManager.save_data()
 	get_tree().paused = false

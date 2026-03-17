@@ -215,3 +215,86 @@ layout_mode = 2
 custom_minimum_size = Vector2(260, 70)
 theme_override_font_sizes/font_size = 30
 text = "MAIN MENU"
+
+[node name="TutorialOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Dimmer" type="ColorRect" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.08, 0.9)
+
+[node name="Panel" type="PanelContainer" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -270.0
+offset_right = 300.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+theme_override_colors/font_color = Color(1.0, 0.84, 0.1, 1)
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="Line1" type="Label" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "1. Touch and hold anywhere to aim from the tower."
+horizontal_alignment = 1
+
+[node name="Line2" type="Label" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "2. Keep holding to cycle through unlocked soldiers."
+horizontal_alignment = 1
+
+[node name="Line3" type="Label" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "3. Release to send the selected soldier in that direction."
+horizontal_alignment = 1
+
+[node name="Line4" type="Label" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "4. Protect the tower for 3 minutes or survive endlessly."
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.58, 0.68, 0.80, 1)
+text = "Each soldier costs coins. Passive income keeps flowing during the match."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="TutorialOverlay/Panel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 76)
+theme_override_font_sizes/font_size = 30
+text = "START DEFENDING"
